@@ -2,31 +2,46 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center my-4">Add New Product</h1>
+    <h1 class="text-center my-4">Create New Product</h1>
 
-    <form action="{{ route('store') }}" method="POST" class="w-50 mx-auto">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('store') }}" method="POST">
         @csrf
-
-        <!-- Product Name -->
+        
         <div class="form-group">
             <label for="product_name">Product Name:</label>
-            <input type="text" name="product_name" class="form-control" id="product_name" required>
+            <input type="text" name="product_name" class="form-control" required>
         </div>
 
-        <!-- Product Description -->
         <div class="form-group">
             <label for="product_description">Product Description:</label>
-            <textarea name="product_description" class="form-control" id="product_description" required></textarea>
+            <textarea name="product_description" class="form-control" required></textarea>
         </div>
 
-        <!-- Product Price -->
         <div class="form-group">
             <label for="product_price">Product Price:</label>
-            <input type="number" name="product_price" class="form-control" id="product_price" required>
+            <input type="number" name="product_price" class="form-control" required>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-success">Add Product</button>
+        <div class="form-group">
+            <label for="category_id">Category:</label>
+            <select name="category_id" id="category_id" class="form-control">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Product</button>
     </form>
 </div>
-
+@endsection

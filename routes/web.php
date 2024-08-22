@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
- use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-use App\Http\Controllers\ProductController;
+
 
 Route::get('/products', [ProductController::class, 'index'])->name('index');
 Route::get('/products/create', [ProductController::class, 'create'])->name('create');
@@ -29,13 +30,13 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('de
 
 
 
-//  Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-//  Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-//  Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-//  Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-//  Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
-//  Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+ Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+ Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+ Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+ Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+ Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-Route::resource('categories', CategoryController::class);
+// Route::resource('categories', CategoryController::class);
 
 

@@ -14,7 +14,7 @@ class ProductController extends Controller
     }
     public function create()
     {
-        return view('create');
+        return view('products.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -49,5 +49,7 @@ class ProductController extends Controller
         Product::destroy($id);
         return redirect()->route('index');
     }
-}
+    
 
+
+}
